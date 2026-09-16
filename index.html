@@ -3106,14 +3106,14 @@ const riskText={1:"Χαμηλός",2:"Μέτριος",3:"Αυξημένος",4:"
 // Το OSM Foundation μπλοκάρει (HTTP 403) αιτήματα χωρίς έγκυρο Referer — π.χ. όταν το αρχείο
 // ανοίγει τοπικά με file:// — ή όταν κρίνει ότι η χρήση είναι εκτός της Tile Usage Policy.
 window.BASEMAP_PROVIDERS = [
-  { url:'https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png',
-    opts:{ subdomains:'abcd', maxZoom:20, attribution:'© OpenStreetMap contributors © CARTO' } },
-  { url:'https://{s}.basemaps.cartocdn.com/rastertiles/light_all/{z}/{x}/{y}{r}.png',
-    opts:{ subdomains:'abcd', maxZoom:20, attribution:'© OpenStreetMap contributors © CARTO' } },
+  { url:'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    opts:{ subdomains:'abc', maxZoom:19, attribution:'© OpenStreetMap contributors' } },
   { url:'https://tile.openstreetmap.de/{z}/{x}/{y}.png',
     opts:{ maxZoom:18, attribution:'© OpenStreetMap contributors' } },
-  { url:'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-    opts:{ subdomains:'abc', maxZoom:19, attribution:'© OpenStreetMap contributors' } }
+  { url:'https://{s}.tile.openstreetmap.fr/osmfr/{z}/{x}/{y}.png',
+    opts:{ subdomains:'abc', maxZoom:20, attribution:'© OpenStreetMap contributors' } },
+  { url:'https://maps.wikimedia.org/osm-intl/{z}/{x}/{y}.png',
+    opts:{ maxZoom:19, attribution:'© OpenStreetMap contributors, © Wikimedia' } }
 ];
 function addBaseTiles(targetMap, idx){
   idx = idx || 0;
