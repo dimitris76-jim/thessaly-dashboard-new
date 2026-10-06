@@ -765,6 +765,7 @@ section.card[data-cat="seismic"]  { border-left-color: color-mix(in srgb, var(--
     <a href="#cmemsMarineSection">🌊 CMEMS / Θάλασσα Σποράδων</a>
     <a href="#rainGaugesSection">🌧️ Βροχόμετρα</a>
     <a href="#rainGaugesSection">🌧️ Τώρα βρέχει (meteo.gr)</a>
+    <a href="#piniosWrfSection">🌦️ WRF Πηνειού (HCMR)</a>
     <a href="#windySection">🌧️⚡ Windy</a>
     <a href="#blitzortungSection">⚡ Blitzortung</a>
   </div>
@@ -2833,6 +2834,18 @@ section.card[data-cat="seismic"]  { border-left-color: color-mix(in srgb, var(--
         Κλίμακα: &lt;2 mm/h ασθενής · 2–10 μέτρια · 10–30 ισχυρή · &gt;30 ραγδαία.
       </div>
     </div>
+  </section>
+
+<section class="card" style="margin-top:14px;border-color:rgba(56,189,248,0.4)" id="piniosWrfSection" data-cat="weather">
+    <div class="refresh-row">
+      <h2 style="margin:0">🌦️ HCMR WRF — Πρόγνωση βροχόπτωσης λεκάνης Πηνειού</h2>
+      <a class="link-btn" href="https://hydro-stations.hcmr.gr/wrf/?basin=PINIOS" target="_blank" rel="noopener">Άνοιγμα σε νέα καρτέλα ↗</a>
+    </div>
+    <iframe class="hcmr-frame" id="piniosWrfFrame" title="HCMR WRF — λεκάνη Πηνειού" style="height:600px"
+      data-src="https://hydro-stations.hcmr.gr/wrf/?basin=PINIOS"
+      loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    <div class="hcmr-fallback" id="piniosWrfFallback">Το HCMR WRF δεν επιτρέπει embedding εδώ. Πάτησε «Άνοιγμα σε νέα καρτέλα» παραπάνω.</div>
+    <div class="note" style="margin-top:8px">Πρόγνωση μοντέλου WRF του ΕΛΚΕΘΕ (HCMR) για τη λεκάνη του <b>Πηνειού</b>. Δεν αποτελεί επίσημη προειδοποίηση — συνδυασμός με GloFAS / HCMR σταθμούς / 112.</div>
   </section>
 
 <section class="card" style="margin-top:14px" id="windySection" data-cat="weather">
@@ -9092,7 +9105,7 @@ function lazyLoadFrame(frameId, fallbackId){
   }, {rootMargin:'200px'});
   observer.observe(frame);
 }
-['hcmrFrame','fireFrame','riskFrame','windyFrame','boFrame','fireweatherFrame','lfiFrame'].forEach(id=>{
+['hcmrFrame','fireFrame','riskFrame','windyFrame','boFrame','fireweatherFrame','lfiFrame','piniosWrfFrame'].forEach(id=>{
   lazyLoadFrame(id, id.replace('Frame','Fallback'));
 });
 
