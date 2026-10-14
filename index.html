@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>THESSALY EL NIÑO RISK OUTLOOK 2026–27</title>
+<title>THESSALY EL NIÑO RISK OUTLOOK 2026–27 · v2 Operational</title>
 <!--
   ═══════════════════════════════════════════════════════════════
   THESSALY EL NIÑO RISK OUTLOOK 2026–27
@@ -695,6 +695,61 @@ section.card[data-cat="seismic"]  { border-left-color: color-mix(in srgb, var(--
 }
 </style>
 
+<style id="v2ImprovementsCSS">
+
+/* ── v2 Source Health + duty mode ── */
+#sourceHealthSection .sh-grid{
+  display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px;margin-top:10px
+}
+.sh-card{
+  padding:12px 12px 10px;border-radius:12px;border:1px solid var(--glass-border);
+  background:rgba(255,255,255,.03);font-size:12.5px;line-height:1.4
+}
+.sh-card .sh-name{font-weight:700;margin-bottom:4px;display:flex;align-items:center;gap:6px}
+.sh-card .sh-meta{color:var(--muted);font-size:11.5px}
+.sh-dot{width:9px;height:9px;border-radius:50%;display:inline-block;flex-shrink:0}
+.sh-ok .sh-dot{background:var(--green);box-shadow:0 0 8px rgba(34,197,94,.45)}
+.sh-warn .sh-dot{background:var(--yellow);box-shadow:0 0 8px rgba(234,179,8,.4)}
+.sh-fail .sh-dot{background:var(--red);box-shadow:0 0 8px rgba(239,68,68,.45)}
+.sh-stale .sh-dot{background:#94a3b8}
+.sh-card.sh-ok{border-color:rgba(34,197,94,.28)}
+.sh-card.sh-warn{border-color:rgba(234,179,8,.35)}
+.sh-card.sh-fail{border-color:rgba(239,68,68,.4);background:rgba(239,68,68,.06)}
+.sh-card.sh-stale{border-color:rgba(148,163,184,.3)}
+#dutyModeBar{
+  display:none;margin-bottom:12px;padding:12px 14px;border-radius:12px;
+  border:1px solid rgba(59,130,246,.4);background:rgba(59,130,246,.1);
+  font-size:13px;line-height:1.5
+}
+#dutyModeBar.active{display:block}
+#dutyModeBar b{color:#93c5fd}
+.official-alert-strip{
+  margin-bottom:12px;padding:12px 14px;border-radius:12px;
+  border:1px solid rgba(234,179,8,.4);background:rgba(234,179,8,.08);
+  font-size:12.5px;line-height:1.55
+}
+.official-alert-strip a{color:#7eb8ff;font-weight:600}
+.stage-entry-card{
+  padding:12px;border-radius:12px;border:1px solid var(--glass-border);
+  background:rgba(255,255,255,.03)
+}
+.stage-entry-card input[type=number]{
+  width:100%;background:rgba(255,255,255,.05);color:var(--text);
+  border:1px solid var(--line-strong);border-radius:8px;padding:8px 10px;
+  font-family:'JetBrains Mono',monospace;font-size:14px
+}
+.stage-entry-card .stage-ts{font-size:11px;color:var(--muted);margin-top:6px}
+.ff-op-badge{
+  font-size:11px;padding:3px 8px;border-radius:8px;font-weight:700;
+  background:rgba(34,197,94,.15);color:#4ade80;border:1px solid rgba(34,197,94,.35)
+}
+.ff-research-badge{
+  font-size:11px;padding:3px 8px;border-radius:8px;font-weight:700;
+  background:rgba(234,179,8,.12);color:#facc15;border:1px solid rgba(234,179,8,.3)
+}
+
+</style>
+
 <style id="floodForecastEngineCSS">
 .ff-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:14px}
 .ff-kpis{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
@@ -720,7 +775,7 @@ section.card[data-cat="seismic"]  { border-left-color: color-mix(in srgb, var(--
 <header>
   <div class="container">
     <h1>🇬🇷 THESSALY EL NIÑO RISK OUTLOOK 2026–27</h1>
-    <div class="sub">Επιχειρησιακό dashboard εποχικού κλιματικού κινδύνου • Σεπτέμβριος 2026 – Μάρτιος 2027</div>
+    <div class="sub">Επιχειρησιακό dashboard εποχικού κλιματικού κινδύνου • Σεπτέμβριος 2026 – Μάρτιος 2027 · <b style="color:#7eb8ff">v2</b> — Source Health · Επίσημα alerts · Βελτιωμένα stage alerts</div>
   </div>
 </header>
 
@@ -728,6 +783,7 @@ section.card[data-cat="seismic"]  { border-left-color: color-mix(in srgb, var(--
 <nav id="quickNav" aria-label="Γρήγορη πλοήγηση">
   <div class="qn-group" data-cat="overview">
     <div class="qn-label">Επισκόπηση</div>
+    <a href="#sourceHealthSection">📡 Υγεία πηγών</a>
     <a href="#mapSection">🗺️ Χάρτης Θεσσαλίας</a>
     <a href="#monthlyEstimateSection">📊 Μηνιαία εκτίμηση</a>
     <a href="#liveSection">🛰️ Δείκτες παρακολούθησης</a>
@@ -799,6 +855,68 @@ section.card[data-cat="seismic"]  { border-left-color: color-mix(in srgb, var(--
        style="display:none;margin-bottom:10px;padding:14px 16px;border-radius:10px;border:2px solid #94a3b8;background:#0c1218;font-size:13px;line-height:1.6;cursor:pointer"
        title="Κλικ για λεπτομέρειες ποιότητας αέρα"></div>
   <div id="priorityAlertsHint" class="note" style="margin-bottom:12px;display:none">Προτεραιότητα ειδοποιήσεων: <b>🌧️ πλημμύρα</b> · <b>🔥 πυρκαγιές</b> · <b>🌡️ θερμοκρασία</b> · <b>🌍 σεισμός</b> · <b>🌫️ αέρας</b> — εμφανίζονται αυτόματα όταν ξεπερνιούνται όρια.</div>
+
+  <!-- v2: Duty mode bar -->
+  <div id="dutyModeBar" role="status">
+    <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between">
+      <div>
+        <b>🛡️ Λειτουργία εφημερίας ενεργή</b>
+        <span class="live-sub" style="margin-left:8px">Browser notifications για GloFAS · στάθμη · FIRMS · σεισμό · όταν ξεπερνιούνται όρια</span>
+      </div>
+      <div style="display:flex;gap:8px;flex-wrap:wrap">
+        <button type="button" onclick="requestDutyNotifications()">🔔 Άδεια ειδοποιήσεων</button>
+        <button type="button" onclick="toggleDutyMode(false)">Απενεργοποίηση</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- v2: Official alerts strip -->
+  <div class="official-alert-strip" id="officialAlertStrip">
+    <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:flex-start;justify-content:space-between">
+      <div style="flex:1;min-width:220px">
+        <b>📢 Επίσημες προειδοποιήσεις (διασταύρωση υποχρεωτική)</b>
+        <div id="officialAlertBody" class="live-sub" style="margin-top:6px">
+          Έλεγχος Meteoalarm / ΕΜΥ… — το dashboard <b>δεν</b> αντικαθιστά 112 / Πολιτική Προστασία / ΕΜΥ.
+        </div>
+      </div>
+      <div style="display:flex;flex-wrap:wrap;gap:6px">
+        <a class="link-btn" style="padding:6px 10px;border:1px solid rgba(234,179,8,.35);border-radius:8px;background:rgba(234,179,8,.1);text-decoration:none" href="https://www.meteoalarm.org/en/live/GR" target="_blank" rel="noopener">Meteoalarm GR ↗</a>
+        <a class="link-btn" style="padding:6px 10px;border:1px solid rgba(234,179,8,.35);border-radius:8px;background:rgba(234,179,8,.1);text-decoration:none" href="https://www.emy.gr/warnings" target="_blank" rel="noopener">ΕΜΥ προειδοποιήσεις ↗</a>
+        <a class="link-btn" style="padding:6px 10px;border:1px solid rgba(239,68,68,.4);border-radius:8px;background:rgba(239,68,68,.12);text-decoration:none;color:#fca5a5" href="tel:112">📞 112</a>
+        <button type="button" onclick="typeof fetchMeteoalarm==='function'&&fetchMeteoalarm()">🔄 Έλεγχος</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- v2: Source Health Panel -->
+  <section class="card" id="sourceHealthSection" data-cat="overview" style="margin-bottom:14px;border-color:rgba(59,130,246,0.35)">
+    <div class="refresh-row" style="margin-bottom:6px">
+      <h2 style="margin:0;font-size:16px">📡 Υγεία πηγών δεδομένων</h2>
+      <div>
+        <span id="sourceHealthStamp" class="live-sub">—</span>
+        <button type="button" onclick="typeof refreshLiveData==='function'&&refreshLiveData({force:true})">🔄 Ανανέωση όλα</button>
+        <button type="button" id="dutyModeToggleBtn" onclick="toggleDutyMode()">🛡️ Εφημερία</button>
+      </div>
+    </div>
+    <div class="note" style="margin-bottom:8px">
+      Πότε ενημερώθηκε κάθε πηγή και αν η τελευταία κλήση πέτυχε. <b>Σιωπή ≠ ηρεμία</b> αν η κατάσταση είναι κόκκινη ή γκρι (cache/παλιό).
+    </div>
+    <div class="sh-grid" id="sourceHealthGrid">
+      <div class="sh-card sh-stale"><div class="sh-name"><span class="sh-dot"></span>GloFAS</div><div class="sh-meta">Αναμονή…</div></div>
+      <div class="sh-card sh-stale"><div class="sh-name"><span class="sh-dot"></span>Open-Meteo καιρός</div><div class="sh-meta">Αναμονή…</div></div>
+      <div class="sh-card sh-stale"><div class="sh-name"><span class="sh-dot"></span>SEAS5 / έδαφος</div><div class="sh-meta">Αναμονή…</div></div>
+      <div class="sh-card sh-stale"><div class="sh-name"><span class="sh-dot"></span>FIRMS</div><div class="sh-meta">Αναμονή…</div></div>
+      <div class="sh-card sh-stale"><div class="sh-name"><span class="sh-dot"></span>Live fires</div><div class="sh-meta">Αναμονή…</div></div>
+      <div class="sh-card sh-stale"><div class="sh-name"><span class="sh-dot"></span>AQI</div><div class="sh-meta">Αναμονή…</div></div>
+      <div class="sh-card sh-stale"><div class="sh-name"><span class="sh-dot"></span>Σεισμοί</div><div class="sh-meta">Αναμονή…</div></div>
+      <div class="sh-card sh-stale"><div class="sh-name"><span class="sh-dot"></span>Meteoalarm</div><div class="sh-meta">Αναμονή…</div></div>
+      <div class="sh-card sh-stale"><div class="sh-name"><span class="sh-dot"></span>Βροχόμετρα</div><div class="sh-meta">Αναμονή…</div></div>
+      <div class="sh-card sh-stale"><div class="sh-name"><span class="sh-dot"></span>EFFIS FWI</div><div class="sh-meta">WMS overlay</div></div>
+    </div>
+    <div class="note" style="margin-top:10px;font-size:11px">
+      HCMR / AGENSO: πραγματικοί σταθμοί στάθμης — <b>χωρίς δημόσιο JSON API</b>· χρησιμοποιήστε την ενότητα «Alerts στάθμης» για χειροκίνητη καταχώρηση με timestamp.
+    </div>
+  </section>
 
   <!-- Καθημερινή σύνοψη πλημμυρικού κινδύνου -->
   <section class="card" id="dailyFloodBriefSection" data-cat="flood" style="margin-bottom:14px;border-color:rgba(56,189,248,0.4)">
@@ -1041,7 +1159,7 @@ section.card[data-cat="seismic"]  { border-left-color: color-mix(in srgb, var(--
 <section class="card" id="pamisosForecastEngine" data-cat="flood" style="margin-bottom:14px;border-color:rgba(56,189,248,.48)">
   <div class="refresh-row" style="margin-bottom:8px">
     <h2 class="collapse-toggle" style="margin:0;font-size:16px" onclick="toggleCollapse(this)" title="Άνοιγμα / κλείσιμο">🌊 FLOOD FORECAST ENGINE v0.4 <span class="collapse-hint">ΑΝΟΙΓΜΑ</span><span class="chev">▼</span></h2>
-    <span class="badge badge-manual" style="font-size:15px;font-weight:900;letter-spacing:0.03em;padding:5px 12px">ΠΕΙΡΑΜΑΤΙΚΟ / DECISION SUPPORT</span>
+    <span class="badge badge-manual" style="font-size:15px;font-weight:900;letter-spacing:0.03em;padding:5px 12px">ΠΕΙΡΑΜΑΤΙΚΟ / DECISION SUPPORT</span> <span class="ff-op-badge" title="Βαθμονομημένο σε Daniel">Πάμισος: βαθμονομημένο</span> <span class="ff-research-badge">Λοιπά: έρευνα</span>
   </div>
 
   <div class="collapse-body">
@@ -1256,12 +1374,16 @@ section.card[data-cat="seismic"]  { border-left-color: color-mix(in srgb, var(--
     </div>
     <div class="collapse-body">
     <div class="note" style="margin-bottom:12px">
-      Το HCMR / AGENSO <b>δεν παρέχουν δημόσιο JSON API</b> χωρίς λογαριασμό για αυτόματη ανάγνωση στάθμης από τον browser.
-      Εδώ: <b>ρυθμιζόμενα όρια (m)</b> + <b>τελευταία μέτρηση</b> που καταχωρείς από τον επίσημο σταθμό → αν η στάθμη ≥ όριο εμφανίζεται
-      banner <code>#stageAlertBanner</code> στην κορυφή (και προαιρετικά ειδοποίηση browser).
-      Κάλυψη: <b>Λάρισα</b> (Πηνειός) · <b>Τρίκαλα</b> (AGENSO γέφυρες) · <b>Καρδίτσα</b> (Καλέντζης, Κεραμίδι, Ενιπέας, Πάμισος, Σοφάδες) · <b>Βόλος / Μαγνησία</b> (Ξηριάς, Αλιγαρρέμα, λεκάνη Βόλου, Αλμυρός).
-      Σημείωση Μαγνησίας: κυρίως <b>χείμαρροι / flash flood</b> — όχι κλασική ποτάμια στάθμη.
-      <b>Δεν</b> αντικαθιστά 112 / Πολιτική Προστασία. Τα προεπιλεγμένα όρια είναι <b>ενδεικτικά</b>.
+      <b>v2 — Ροή εργασίας εφημερίας:</b> άνοιξε HCMR Grafana / AGENSO → διάβασε στάθμη → καταχώρησε τιμή εδώ → «Αποθήκευση».
+      Κάθε μέτρηση αποθηκεύεται με <b>timestamp</b>· μετρήσεις παλαιότερες από 3 ώρες εμφανίζονται ως <span style="color:#facc15">STALE</span>.
+      Το HCMR / AGENSO <b>δεν παρέχουν δημόσιο JSON API</b> χωρίς λογαριασμό.
+      Αν στάθμη ≥ όριο → banner στην κορυφή + browser notification (αν έχεις δώσει άδεια / λειτουργία εφημερίας).
+      Κάλυψη: <b>Λάρισα</b> · <b>Τρίκαλα (AGENSO)</b> · <b>Καρδίτσα</b> · <b>Βόλος / Μαγνησία</b> (χείμαρροι / flash flood).
+      <b>Δεν</b> αντικαθιστά 112 / Πολιτική Προστασία. Όρια <b>ενδεικτικά</b>.
+    </div>
+    <div class="controls" style="margin-bottom:10px;flex-wrap:wrap;gap:8px">
+      <button type="button" onclick="event.stopPropagation();stampAllStageReadingsNow()" title="Ορίζει timestamp «τώρα» σε όλες τις συμπληρωμένες μετρήσεις">⏱️ Timestamp τώρα (συμπληρωμένες)</button>
+      <button type="button" onclick="event.stopPropagation();clearStaleStageReadings()" title="Καθαρίζει μετρήσεις παλαιότερες από 3 ώρες">🧹 Καθαρισμός STALE (&gt;3h)</button>
     </div>
     <div class="controls" style="margin-bottom:10px;flex-wrap:wrap">
       <a class="link-btn" href="https://hydro-stations.hcmr.gr/thessaly-stations/" target="_blank" rel="noopener">HCMR σταθμοί ↗</a>
@@ -2979,15 +3101,18 @@ section.card[data-cat="seismic"]  { border-left-color: color-mix(in srgb, var(--
       <li>Δεν υπολογίζει βάθη/ταχύτητες πλημμύρας (χρειάζεται HEC-RAS ή χάρτες ΖΔΥΚΠ).</li>
       <li>GloFAS έχει ανάλυση ~5–10 km — όχι ακρίβεια σε επίπεδο γέφυρας/οικισμού.</li>
       <li>Τα κατώφλια στάθμης είναι ενδεικτικά· τα επίσημα ορίζει HCMR / ΔΕΥΑ ανά σταθμό.</li>
+      <li>HCMR / AGENSO <b>δεν</b> παρέχουν δημόσιο JSON API — οι στάθμες εισάγονται χειροκίνητα (v2: με υποχρεωτικό timestamp).</li>
       <li>Οι ζώνες A–G είναι απλοποιημένα πολύγωνα — μπορεί να μένουν μικρά κενά στα όρια (π.χ. μεμονωμένοι οικισμοί).</li>
       <li>Γέφυρες και αναχώματα <b>δεν τοποθετούνται στον χάρτη</b> χωρίς επαληθευμένες συντεταγμένες· αναφέρονται μόνο ονομαστικά στους πίνακες.</li>
-      <li>Δεν στέλνει SMS/email/push ειδοποιήσεις — μόνο οπτικό banner στην κορυφή όταν κάποιο σημείο GloFAS ξεπερνά τα ρυθμιζόμενα όρια, ορατό μόνο όσο το dashboard είναι ανοιχτό.</li>
+      <li>v2: Browser notifications σε λειτουργία εφημερίας — <b>όχι</b> SMS/email/server push. Ορατό μόνο με ανοιχτό (ή πρόσφατα ενεργό) tab.</li>
       <li>Iframes τρίτων μπορεί να μπλοκάρονται από τον browser (χρησιμοποίησε «Άνοιγμα σε νέα καρτέλα»).</li>
+      <li>Flood Forecast Engine: μόνο ο <b>Πάμισος</b> θεωρείται βαθμονομημένος (Daniel)· τα υπόλοιπα ποτάμια είναι ερευνητικά.</li>
+      <li>CORS proxies τρίτων (όταν χρειάζονται) μπορεί να αποτύχουν σε κρίσιμες στιγμές — ελέγξτε το panel «Υγεία πηγών».</li>
     </ul>
   </section>
 
   <div class="footer">
-    ⚠️ Το dashboard είναι ερευνητικό/επιχειρησιακό εργαλείο υποστήριξης αποφάσεων. Δεν αποτελεί επίσημη πρόγνωση της ΕΜΥ, της Πολιτικής Προστασίας, του ECMWF ή άλλου δημόσιου φορέα.
+    ⚠️ v2 Operational — ερευνητικό/επιχειρησιακό εργαλείο υποστήριξης αποφάσεων. Δεν αποτελεί επίσημη πρόγνωση της ΕΜΥ, της Πολιτικής Προστασίας, του ECMWF ή άλλου δημόσιου φορέα.
     Οι χρωματισμοί αποτελούν ενδεικτική αξιολόγηση εποχικού κινδύνου και πρέπει να επικαιροποιούνται με τα νεότερα δεδομένα.
     <div style="margin-top:12px;font-size:12px;color:#9eb0c8;letter-spacing:0.02em;line-height:1.55">
       © 2026 <span style="color:#c5d4e8;font-weight:600">Δημήτρης Παπανδρέου</span> · Με επιφύλαξη παντός δικαιώματος<br>
@@ -5388,17 +5513,27 @@ function renderStageAlertCards(){
   const cfg = getStageAlertConfig();
   const byId = {};
   (cfg.stations||[]).forEach(function(s){ byId[s.id]=s; });
+  const STALE_MS = 3 * 60 * 60 * 1000;
+  const now = Date.now();
   host.innerHTML = STAGE_ALERT_DEFAULTS.map(function(def){
     const s = byId[def.id] || {};
     const th = s.threshold != null ? s.threshold : (def.threshold != null ? def.threshold : '');
     const wn = s.warn != null ? s.warn : (def.warn != null ? def.warn : '');
     const rd = s.reading != null ? s.reading : '';
     const ts = s.readingTs ? new Date(s.readingTs).toLocaleString('el-GR') : '—';
+    const age = s.readingTs ? (now - s.readingTs) : null;
+    const isStale = age != null && age > STALE_MS && rd !== '' && rd != null;
+    const staleBadge = isStale
+      ? ' <span style="font-size:10px;padding:2px 7px;border-radius:6px;border:1px solid rgba(234,179,8,.45);background:rgba(234,179,8,.15);color:#facc15">STALE &gt;3h</span>'
+      : (s.readingTs && rd !== '' && rd != null
+        ? ' <span style="font-size:10px;padding:2px 7px;border-radius:6px;border:1px solid rgba(34,197,94,.35);background:rgba(34,197,94,.12);color:#4ade80">FRESH</span>'
+        : '');
     const peBadge = def.pe
       ? '<span style="font-size:10px;padding:2px 7px;border-radius:6px;border:1px solid rgba(56,189,248,0.35);background:rgba(56,189,248,0.12);color:#7dd3fc;margin-left:6px">'+def.pe+'</span>'
       : '';
-    return '<div class="kpi" style="margin:0">'
-      + '<b>'+def.name+'</b>'+peBadge
+    const border = isStale ? 'border-color:rgba(234,179,8,.4);' : '';
+    return '<div class="kpi stage-entry-card" style="margin:0;'+border+'">'
+      + '<b>'+def.name+'</b>'+peBadge+staleBadge
       + '<div class="live-sub" style="margin-top:4px">'+def.source+' · <a class="link-btn" style="display:inline" href="'+def.link+'" target="_blank" rel="noopener">πηγή ↗</a></div>'
       + '<div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px;font-size:12px">'
       + '<label>Όριο alert ('+def.unit+')<br><input id="stage-th-'+def.id+'" type="number" step="0.01" value="'+(th!==''&&th!=null?th:'')+'" style="width:100%;margin-top:4px;padding:6px 8px;border-radius:8px;border:1px solid var(--line);background:#0d1626;color:#eef4ff"></label>'
@@ -5406,11 +5541,11 @@ function renderStageAlertCards(){
       + '</div>'
       + '<label style="display:block;margin-top:8px;font-size:12px">Τελευταία στάθμη ('+def.unit+') — από HCMR/AGENSO/ΠΠ<br>'
       + '<input id="stage-rd-'+def.id+'" type="number" step="0.01" value="'+(rd!==''&&rd!=null?rd:'')+'" placeholder="π.χ. 3.20" style="width:100%;margin-top:4px;padding:6px 8px;border-radius:8px;border:1px solid var(--line);background:#0d1626;color:#eef4ff"></label>'
-      + '<div class="live-sub" style="margin-top:6px">Καταχώριση: '+ts+'</div>'
+      + '<div class="stage-ts">Καταχώριση: '+ts+(isStale?' · ανανέωσε από επίσημο σταθμό':'')+'</div>'
       + '</div>';
   }).join('');
   const st = document.getElementById('stageAlertStatus');
-  if(st) st.textContent = 'Όρια & μετρήσεις τοπικά (localStorage) · Λάρισα · Τρίκαλα · Καρδίτσα · Βόλος/Μαγνησία · πάτησε «Αποθήκευση» μετά από αλλαγές';
+  if(st) st.textContent = 'v2 · Όρια & μετρήσεις localStorage · FRESH/STALE ανά timestamp · «Αποθήκευση» μετά από αλλαγές';
 }
 
 function evaluateStageAlerts(forceSave){
@@ -5460,7 +5595,41 @@ function evaluateStageAlerts(forceSave){
       new Notification('ALERT στάθμης — Θεσσαλία', {body: crit.slice(0,3).join(' · '), tag: 'stage-alert'});
     }catch(e){}
   }
+  if(crit.length && typeof dutyNotify === 'function'){
+    try{ dutyNotify('ALERT στάθμης — Θεσσαλία', crit.slice(0,3).join(' · '), 'stage-alert-duty'); }catch(e){}
+  }
   if(typeof updatePhenomenaTicker === 'function') try{ updatePhenomenaTicker(); }catch(e){}
+}
+
+
+function stampAllStageReadingsNow(){
+  const cfg = getStageAlertConfig();
+  const now = Date.now();
+  (cfg.stations || []).forEach(function(s){
+    if(s.reading != null && !isNaN(s.reading)) s.readingTs = now;
+  });
+  try{ localStorage.setItem('stageAlertConfig', JSON.stringify(cfg)); }catch(e){}
+  if(typeof renderStageAlertCards === 'function') renderStageAlertCards();
+  const st = document.getElementById('stageAlertStatus');
+  if(st) st.textContent = 'Timestamps ενημερώθηκαν: ' + new Date().toLocaleString('el-GR');
+}
+function clearStaleStageReadings(){
+  const cfg = getStageAlertConfig();
+  const limit = 3 * 60 * 60 * 1000;
+  const now = Date.now();
+  let n = 0;
+  (cfg.stations || []).forEach(function(s){
+    if(s.readingTs && (now - s.readingTs) > limit){
+      s.reading = null;
+      s.readingTs = null;
+      n++;
+    }
+  });
+  try{ localStorage.setItem('stageAlertConfig', JSON.stringify(cfg)); }catch(e){}
+  if(typeof renderStageAlertCards === 'function') renderStageAlertCards();
+  if(typeof evaluateStageAlerts === 'function') evaluateStageAlerts(false);
+  const st = document.getElementById('stageAlertStatus');
+  if(st) st.textContent = 'Καθαρίστηκαν ' + n + ' STALE μετρήσεις (>3h)';
 }
 
 function requestStageNotifyPermission(){
@@ -8893,6 +9062,7 @@ async function refreshLiveData(opts){
     if(typeof computeCombinedFireRisk === 'function') computeCombinedFireRisk();
     if(typeof updatePhenomenaTicker === 'function') updatePhenomenaTicker();
     if(lastUpdateEl) lastUpdateEl.textContent = 'Ενημερώθηκε: ' + new Date().toLocaleString('el-GR');
+    if(typeof renderSourceHealth === 'function') try{ renderSourceHealth(); }catch(e){}
     if(typeof saveHistorySnapshot === 'function') saveHistorySnapshot();
 
     // Δεν μπλοκάρουμε το refreshLiveData σε αυτό — απλώς διασφαλίζουμε ότι
@@ -9705,7 +9875,10 @@ document.querySelectorAll('#quickNav a').forEach(function(a){
 
   function populateRiverSelect(){
     const sel=n('ffRiverSelect');
-    sel.innerHTML = RIVERS_V3.map(r=>`<option value="${r.id}">${r.label}</option>`).join('');
+    sel.innerHTML = RIVERS_V3.map(r=>{
+      const tag = r.id==='pamisos' ? ' ✅ βαθμονομημένο' : ' ⚠️ έρευνα';
+      return `<option value="${r.id}">${r.label}${tag}</option>`;
+    }).join('');
   }
 
   ['ffRain','ffDuration','ffWetness','ffBaseQ'].forEach(id=>{
@@ -9824,5 +9997,281 @@ document.querySelectorAll('#quickNav a').forEach(function(a){
 </script>
 
 <div style="display:none">Flood Forecast Engine v0.4</div>
+<script id="v2OperationalJS">
+
+/* ========================================================================
+   v2 OPERATIONAL IMPROVEMENTS
+   Source Health · Duty mode · Official alerts · Stage entry timestamps
+   ======================================================================== */
+(function(){
+  const SOURCE_DEFS = [
+    { id: 'glofas', label: 'GloFAS' },
+    { id: 'weather', label: 'Open-Meteo καιρός' },
+    { id: 'seas5', label: 'SEAS5 / έδαφος' },
+    { id: 'firms', label: 'FIRMS' },
+    { id: 'lfi', label: 'Live fires' },
+    { id: 'aqi', label: 'AQI' },
+    { id: 'quakes', label: 'Σεισμοί' },
+    { id: 'meteoalarm', label: 'Meteoalarm' },
+    { id: 'rain', label: 'Βροχόμετρα' },
+    { id: 'effis', label: 'EFFIS FWI' }
+  ];
+
+  const STALE_MS = {
+    glofas: 15 * 60 * 1000,
+    weather: 30 * 60 * 1000,
+    seas5: 6 * 60 * 60 * 1000,
+    firms: 30 * 60 * 1000,
+    lfi: 20 * 60 * 1000,
+    aqi: 45 * 60 * 1000,
+    quakes: 20 * 60 * 1000,
+    meteoalarm: 60 * 60 * 1000,
+    rain: 30 * 60 * 1000,
+    effis: 6 * 60 * 60 * 1000
+  };
+
+  window.__sourceHealth = window.__sourceHealth || {};
+
+  function loadHealth(){
+    try {
+      const raw = localStorage.getItem('thessalySourceHealth');
+      if (raw) window.__sourceHealth = JSON.parse(raw) || {};
+    } catch (e) {}
+  }
+  function saveHealth(){
+    try {
+      localStorage.setItem('thessalySourceHealth', JSON.stringify(window.__sourceHealth));
+    } catch (e) {}
+  }
+  loadHealth();
+
+  window.reportSourceHealth = function(id, ok, detail){
+    const prev = window.__sourceHealth[id] || {};
+    window.__sourceHealth[id] = {
+      ok: !!ok,
+      ts: Date.now(),
+      detail: detail || (ok ? 'OK' : 'Σφάλμα'),
+      fromCache: !!(detail && String(detail).indexOf('cache') >= 0)
+    };
+    // keep last failure message briefly if flipping to ok with no detail
+    if (ok && !detail && prev.detail && prev.ok === false) {
+      window.__sourceHealth[id].detail = 'OK';
+    }
+    saveHealth();
+    renderSourceHealth();
+  };
+
+  function ageLabel(ts){
+    if (!ts) return 'ποτέ';
+    const sec = Math.round((Date.now() - ts) / 1000);
+    if (sec < 60) return sec + ' δευτ.';
+    if (sec < 3600) return Math.round(sec / 60) + ' λεπτά';
+    if (sec < 86400) return (sec / 3600).toFixed(1) + ' ώρες';
+    return (sec / 86400).toFixed(1) + ' ημέρες';
+  }
+
+  window.renderSourceHealth = function(){
+    const grid = document.getElementById('sourceHealthGrid');
+    if (!grid) return;
+    const h = window.__sourceHealth || {};
+    grid.innerHTML = SOURCE_DEFS.map(function(def){
+      const s = h[def.id];
+      let cls = 'sh-stale';
+      let meta = 'Δεν έχει γίνει ακόμα κλήση σε αυτόν τον browser';
+      if (s && s.ts) {
+        const age = Date.now() - s.ts;
+        const lim = STALE_MS[def.id] || 3600000;
+        if (!s.ok) cls = 'sh-fail';
+        else if (age > lim) cls = 'sh-warn';
+        else cls = 'sh-ok';
+        meta = (s.ok ? 'OK' : 'Αποτυχία') + ' · πριν ' + ageLabel(s.ts);
+        if (s.detail) meta += ' · ' + s.detail;
+        if (s.fromCache) meta += ' · cache';
+      }
+      return '<div class="sh-card ' + cls + '"><div class="sh-name"><span class="sh-dot"></span>' +
+        def.label + '</div><div class="sh-meta">' + meta + '</div></div>';
+    }).join('');
+    const stamp = document.getElementById('sourceHealthStamp');
+    if (stamp) {
+      const oks = SOURCE_DEFS.filter(function(d){ return h[d.id] && h[d.id].ok; }).length;
+      stamp.textContent = oks + '/' + SOURCE_DEFS.length + ' OK · ' + new Date().toLocaleTimeString('el-GR');
+    }
+  };
+
+  // ── Duty mode ──────────────────────────────────────────────────────────
+  window.__dutyMode = false;
+  try { window.__dutyMode = localStorage.getItem('thessalyDutyMode') === '1'; } catch (e) {}
+
+  window.toggleDutyMode = function(force){
+    if (typeof force === 'boolean') window.__dutyMode = force;
+    else window.__dutyMode = !window.__dutyMode;
+    try { localStorage.setItem('thessalyDutyMode', window.__dutyMode ? '1' : '0'); } catch (e) {}
+    const bar = document.getElementById('dutyModeBar');
+    if (bar) bar.classList.toggle('active', window.__dutyMode);
+    const btn = document.getElementById('dutyModeToggleBtn');
+    if (btn) btn.textContent = window.__dutyMode ? '🛡️ Εφημερία ON' : '🛡️ Εφημερία';
+    if (window.__dutyMode) requestDutyNotifications();
+  };
+
+  window.requestDutyNotifications = function(){
+    if (!('Notification' in window)) {
+      alert('Ο browser δεν υποστηρίζει ειδοποιήσεις.');
+      return;
+    }
+    if (Notification.permission === 'granted') return;
+    Notification.requestPermission().catch(function(){});
+  };
+
+  window.dutyNotify = function(title, body, tag){
+    if (!window.__dutyMode) return;
+    if (!('Notification' in window) || Notification.permission !== 'granted') return;
+    try {
+      const n = new Notification(title, {
+        body: body || '',
+        tag: tag || ('thessaly-' + Date.now()),
+        requireInteraction: true
+      });
+      setTimeout(function(){ try { n.close(); } catch (e) {} }, 120000);
+    } catch (e) {}
+  };
+
+  // Hook: after source health render on load
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function(){
+      renderSourceHealth();
+      if (window.__dutyMode) toggleDutyMode(true);
+    });
+  } else {
+    renderSourceHealth();
+    if (window.__dutyMode) toggleDutyMode(true);
+  }
+
+  // Periodic stale re-render
+  setInterval(function(){ try { renderSourceHealth(); } catch (e) {} }, 60000);
+})();
+
+/* Wrap reportSourceHealth into known fetch completion points via monkeypatch helpers */
+(function(){
+  function wrapNamed(name, sourceId, okDetail){
+    const orig = window[name];
+    if (typeof orig !== 'function') return;
+    window[name] = async function(){
+      try {
+        const r = await orig.apply(this, arguments);
+        if (typeof reportSourceHealth === 'function') {
+          reportSourceHealth(sourceId, true, okDetail || 'OK');
+        }
+        return r;
+      } catch (err) {
+        if (typeof reportSourceHealth === 'function') {
+          reportSourceHealth(sourceId, false, (err && err.message) ? String(err.message).slice(0, 80) : 'error');
+        }
+        throw err;
+      }
+    };
+  }
+  // Applied after functions are defined — deferred
+  window.__v2InstallFetchHooks = function(){
+    wrapNamed('fetchFlood', 'glofas', 'GloFAS discharge');
+    wrapNamed('fetchSeasonal', 'seas5', 'SEAS5');
+    wrapNamed('fetchSoil', 'seas5', 'soil');
+    wrapNamed('fetchWildfiresThessaly', 'firms', 'FIRMS CSV');
+    wrapNamed('fetchLiveFireIncidentsThessaly', 'lfi', 'LFI');
+    wrapNamed('fetchAirQualityThessaly', 'aqi', 'EAQI');
+    wrapNamed('fetchEarthquakesThessaly', 'quakes', 'events');
+    wrapNamed('fetchMeteoalarm', 'meteoalarm', 'alerts');
+    wrapNamed('fetchRainGaugesThessaly', 'rain', 'gauges');
+    wrapNamed('fetchPrecipThessaly', 'weather', 'precip');
+    wrapNamed('fetchShortTermWeather', 'weather', 'forecast');
+    // EFFIS is WMS — mark ok when toggle used
+    if (typeof window.toggleFWI === 'function') {
+      const o = window.toggleFWI;
+      window.toggleFWI = function(){
+        try {
+          const r = o.apply(this, arguments);
+          if (typeof reportSourceHealth === 'function') reportSourceHealth('effis', true, 'WMS');
+          return r;
+        } catch (e) {
+          if (typeof reportSourceHealth === 'function') reportSourceHealth('effis', false, 'WMS error');
+          throw e;
+        }
+      };
+    }
+  };
+  // Install after a short delay so other scripts define functions first
+  function tryInstall(){
+    if (typeof window.fetchFlood === 'function') {
+      window.__v2InstallFetchHooks();
+      return true;
+    }
+    return false;
+  }
+  if (!tryInstall()) {
+    document.addEventListener('DOMContentLoaded', function(){
+      setTimeout(function(){ tryInstall(); }, 100);
+      setTimeout(function(){ tryInstall(); }, 1500);
+    });
+    setTimeout(function(){ tryInstall(); }, 3000);
+  }
+})();
+
+/* Enhance official alert strip when meteoalarm / ticker updates */
+(function(){
+  const orig = window.updatePhenomenaTicker;
+  // Patch after definition
+  function install(){
+    if (typeof window._updatePhenomenaTickerNow !== 'function') return false;
+    const inner = window._updatePhenomenaTickerNow;
+    if (inner.__v2patched) return true;
+    window._updatePhenomenaTickerNow = function(){
+      const r = inner.apply(this, arguments);
+      try {
+        const body = document.getElementById('officialAlertBody');
+        const ticker = document.getElementById('phenomenaTickerText');
+        if (body && ticker) {
+          const t = (ticker.textContent || '').trim();
+          if (t && t.indexOf('Φόρτωση') < 0) {
+            body.innerHTML = 'Σύνοψη dashboard: ' + t.slice(0, 280) +
+              (t.length > 280 ? '…' : '') +
+              ' <span style="opacity:.8">— πάντα διασταύρωση με Meteoalarm / ΕΜΥ / 112.</span>';
+          }
+        }
+      } catch (e) {}
+      return r;
+    };
+    window._updatePhenomenaTickerNow.__v2patched = true;
+    return true;
+  }
+  if (!install()) {
+    document.addEventListener('DOMContentLoaded', function(){
+      setTimeout(install, 200);
+      setTimeout(install, 2000);
+    });
+  }
+})();
+
+/* Duty notifications on elevated GloFAS / readiness text changes */
+(function(){
+  let lastSig = '';
+  setInterval(function(){
+    if (!window.__dutyMode) return;
+    try {
+      const g = document.getElementById('glofas-value');
+      const r = document.getElementById('readinessLevel');
+      const wf = document.getElementById('wf-count-value');
+      const sig = [g && g.textContent, r && r.textContent, wf && wf.textContent].join('|');
+      if (!sig || sig === lastSig) return;
+      // only notify on worsening keywords
+      const blob = sig.toUpperCase();
+      const bad = /ΚΟΚΚΙΝ|ΥΨΗΛ|ALERT|CRITICAL|L3|L4|WARNING/.test(blob);
+      if (bad && lastSig) {
+        dutyNotify('Θεσσαλία — αυξημένος δείκτης', sig.slice(0, 160), 'thessaly-elevated');
+      }
+      lastSig = sig;
+    } catch (e) {}
+  }, 20000);
+})();
+
+</script>
 </body>
 </html>
